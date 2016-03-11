@@ -25,8 +25,8 @@
     //判断是否需要显示：（内部已经考虑版本及本地版本缓存）
     BOOL canShow = [HEFCoreNewFeatureVC canShowNewFeature];
     
-#warning 正式版本时需要删除该代码
-    //canShow = YES;
+
+    canShow = YES; //测试用
     
     NSArray *nameArray = @[@"07.jpg",@"08.jpg",@"09.jpg",@"10.jpg"];
     if (canShow) {
@@ -60,8 +60,6 @@
         
     }
 
-    //[NSThread sleepForTimeInterval:1.0];
-    //[NSThread sleepForTimeInterval:1.0];
     return YES;
 }
 
