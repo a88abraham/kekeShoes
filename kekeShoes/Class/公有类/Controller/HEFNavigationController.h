@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-@interface HEFNavigationController : BaseViewController
+@interface HEFNavigationController : BaseViewController<UIWebViewDelegate>
 
 @property (nonatomic,strong) UIView *navibarView;
 @property (nonatomic,strong) UILabel *titleLabel;

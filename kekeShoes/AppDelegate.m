@@ -37,9 +37,10 @@
             
         } configuration:^(UIButton *enterButton) {
            
-            [enterButton setBackgroundImage:[UIImage imageNamed:@"u2"] forState:UIControlStateNormal];
-            enterButton.bounds = CGRectMake(0, 0, 180, 40);
-            enterButton.center = CGPointMake(kWindowW * 0.5, kWindowH* 0.85);
+            [enterButton setTitle:@"跳过" forState:UIControlStateNormal];
+            //[enterButton setBackgroundImage:[UIImage imageNamed:@"u2"] forState:UIControlStateNormal];
+            enterButton.bounds = CGRectMake(0, 0, 40, 40);
+            enterButton.center = CGPointMake(kWindowW * 0.8, kWindowH* 0.1);
             
         }];
     }else{

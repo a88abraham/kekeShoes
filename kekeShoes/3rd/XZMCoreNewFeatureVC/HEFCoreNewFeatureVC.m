@@ -267,6 +267,15 @@ NSString *const NewFeatureVersionKey = @"NewFeatureVersionKey";
         imageV.tag = idx;
         
         [_scrollView addSubview:imageV];
+
+//        for (int i = 0; i < self.imageNames.count; i++) {
+//            if (idx == 0) {
+//                NSLog(@"i = %d  idx = %ld",i,idx);
+//                // 添加按钮
+//                _enterButton = [self setUpEnterButton:imageV];
+//            }
+//        }
+        
         
         if(idx == self.imageNames.count -1) {
             

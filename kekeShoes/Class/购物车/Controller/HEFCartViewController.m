@@ -29,7 +29,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.kknx6.com/Mobile/Client/Login?RedirctUrl=/Mobile/UserInfo/User"]];
     
     // 加载页面
-    [homeWebView loadRequest:request];
+   // [homeWebView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {
