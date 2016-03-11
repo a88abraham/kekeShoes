@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
+#import "HEFTabBarController.h"
+#import "HEFCoreNewFeatureVC.h"
+#import "CALayer+Transition.h"
+#import "LaunchDemo.h"
 @interface AppDelegate ()
 
 @end
@@ -16,8 +19,59 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    //判断是否需要显示：（内部已经考虑版本及本地版本缓存）
+    BOOL canShow = [HEFCoreNewFeatureVC canShowNewFeature];
+    
+#warning 正式版本时需要删除该代码
+    //canShow = YES;
+    
+    NSArray *nameArray = @[@"07.jpg",@"08.jpg",@"09.jpg",@"10.jpg"];
+    if (canShow) {
+        
+        _window.rootViewController = [HEFCoreNewFeatureVC newFeatureVCWithImageNames:nameArray enterBlock:^{
+            
+            [self enterMainPage];
+            
+        } configuration:^(UIButton *enterButton) {
+           
+            [enterButton setBackgroundImage:[UIImage imageNamed:@"u2"] forState:UIControlStateNormal];
+            enterButton.bounds = CGRectMake(0, 0, 180, 40);
+            enterButton.center = CGPointMake(kWindowW * 0.5, kWindowH* 0.85);
+            
+        }];
+    }else{
+        [self enterMainPage];
+        
+        LaunchDemo *demo = [LaunchDemo new];
+        demo.iconFrame = CGRectMake(0, 0, kWindowW, kWindowH - 128);
+        demo.desLabelFreme = CGRectMake(0, kWindowH - 34, kWindowW, 25);
+        [demo loadLaunchImage:@"launch1.png"
+                     iconName:nil
+                  appearStyle:JRApperaStyleNone
+                      bgImage:nil
+                    disappear:JRDisApperaStyleLeft
+               descriptionStr:nil];
+        demo.desLabel.font = [UIFont systemFontOfSize:12];
+        demo.desLabel.textColor = [UIColor whiteColor];
+
+        
+    }
+
+    //[NSThread sleepForTimeInterval:1.0];
+    //[NSThread sleepForTimeInterval:1.0];
     return YES;
+}
+
+// 进入主页面
+-(void)enterMainPage{
+    
+    HEFTabBarController *tbc = [[HEFTabBarController alloc] init];
+    _window.rootViewController = tbc;
+    [self.window.layer transitionWithAnimType:TransitionAnimTypeReveal subType:TransitionSubtypesFromRight curve:TransitionCurveEaseInEaseOut duration:2.0f];
+    [_window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
